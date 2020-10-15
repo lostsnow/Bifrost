@@ -52,10 +52,10 @@ jobs:
 
           # Strip "v" prefix from tag name
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          [[ "${{ github.ref }}" != "refs/tags/"* ]] && [ "$VERSION" != "master" ] && VERSION=nightly
 
           # Use Docker `latest` tag convention
           [ "$VERSION" == "master" ] && VERSION=latest
-          [ "$VERSION" == "feature/github-action" ] && VERSION=nightly
 
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
