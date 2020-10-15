@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Github Package
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -9,6 +9,7 @@ on:
     # Publish `master` as Docker `latest` image.
     branches:
       - master
+      - feature/github-action
 
     # Publish `v1.2.3` tags as releases.
     tags:
@@ -54,6 +55,7 @@ jobs:
 
           # Use Docker `latest` tag convention
           [ "$VERSION" == "master" ] && VERSION=latest
+          [ "$VERSION" == "feature/github-action" ] && VERSION=nightly
 
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
